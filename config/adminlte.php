@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>商品管理</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>ホーム画面へ</b>',
+    'logo_img' => 'img/homelogo.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => '商品管理',
+    'logo_img_alt' => 'ホーム画面',
 
     /*
     |--------------------------------------------------------------------------
@@ -291,10 +291,28 @@ return [
 
     'menu' => [
         [
-            'text' => '商品一覧',
+            'text' => '商品一覧・管理',
             'url'  => 'items',
-            'icon' => 'fas fa-gamepad',
+            'icon' => '',
+
+           
         ],
+
+        // [
+        //     'text' => '商品管理',
+        //     'url'  => 'items',
+        //     'icon' => 'fas fa-gamepad',
+
+           
+        // ],
+
+        // [
+        //     'text' => 'ユーザー管理',
+        //     'url'  => 'items',
+        //     'icon' => 'fas fa-gamepad',
+
+           
+        // ],
 
         // AdminLTEデフォルト
         /*

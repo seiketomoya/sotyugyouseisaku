@@ -2,35 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'user_id',
-        'name',
-        'type',
-        'detail',
-    ];
+    use HasFactory;
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-    ];
+    // fillableプロパティ: マスアサインメント（一括割り当て）で安全に割り当て可能な属性を定義します。
+    // これにより、create()やupdate()メソッドなどで一括でデータを割り当てる際に、
+    // これらの属性のみが割り当てられることが保証されます。.
+    protected $fillable = ['name', 'type', 'price', 'stock', 'detail', 'user_id','image'];
 }
+

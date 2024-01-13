@@ -38,8 +38,8 @@
                                 <option >【並(白等級)】大玉(1.4kg前後)2玉</option>
                                 <option >【並(白等級)】特大玉(1.5kg前後)２玉</option>
                                 <option >【B級品(訳あり)】中玉(1.3kg前後)1玉</option>
-                                <option >【B級品(訳あり)】中玉(1.4kg前後)1玉</option>
-                                <option >【B級品(訳あり)】中玉(1.5kg前後)1玉</option>
+                                <option >【B級品(訳あり)】中玉(1.3kg前後)２玉</option>
+                                <option >【B級品(訳あり)】中玉(1.3kg前後)3玉</option>
                             </select>
                         </div>
 

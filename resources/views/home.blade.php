@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>メロン販売サイト</title>
+    <title>メロン農家の商品管理システム</title>
     <link href="{{asset('/css/home.css')}}" rel="stylesheet">
 
     <!-- Bootstrap CSS -->

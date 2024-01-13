@@ -291,20 +291,19 @@ return [
 
     'menu' => [
         [
-            'text' => '商品一覧・管理',
+            'key'  => '商品管理_admin_only',
+            'text' => '商品管理',
             'url'  => 'items',
             'icon' => '',
 
-           
         ],
 
-        // [
-        //     'text' => '商品管理',
-        //     'url'  => 'items',
-        //     'icon' => 'fas fa-gamepad',
-
-           
-        // ],
+        [
+            'text' => '商品一覧',
+            'url'  => 'item/show', // 商品管理ページへのリンク
+            'icon' => '',
+            
+        ],
 
         // [
         //     'text' => 'ユーザー管理',

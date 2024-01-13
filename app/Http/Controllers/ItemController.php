@@ -27,10 +27,19 @@ class ItemController extends Controller
     public function index()
     {
         // 商品一覧取得
-        $items = item::all(); //モデルを使用してデータベースから全アイテムを取得
+        $items = Item::all(); //モデルを使用してデータベースから全アイテムを取得
 
         return view('item.index', ['items' => $items]); //取得したアイテムをビューに渡す
     }
+
+        public function showItem()
+    {
+        $items = Item::all(); // IDに対応する商品を取得
+
+        return view('item.show', ['items' => $items]); // item.showを表示し、商品データを渡す
+    }
+
+
 
 
     // registerメソッド: 商品登録処理を行います。

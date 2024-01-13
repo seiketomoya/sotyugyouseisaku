@@ -34,15 +34,15 @@
                         <div class="mb-3">
                             <label for="type">種別</label>
                             <select class="form-control" id="type" name="type">
-                                <option >【並(白等級)】中玉(1.3kg前後)1玉</option>
-                                <option >【並(白等級)】大玉(1.4kg前後)1玉</option>
-                                <option >【並(白等級)】特大玉(1.5kg前後)1玉</option>
-                                <option >【並(白等級)】中玉(1.3kg前後)2玉</option>
-                                <option >【並(白等級)】大玉(1.4kg前後)2玉</option>
-                                <option >【並(白等級)】特大玉(1.5kg前後)２玉</option>
-                                <option >【B級品(訳あり)】中玉(1.3kg前後)1玉</option>
-                                <option >【B級品(訳あり)】中玉(1.4kg前後)1玉</option>
-                                <option >【B級品(訳あり)】中玉(1.5kg前後)1玉</option>
+                            <option value="並(白等級) 中玉(1.3kg前後)1玉" {{ old('type', $item->type ?? '') === '並(白等級) 中玉(1.3kg前後)1玉' ? 'selected' : '' }}>【並(白等級)】中玉(1.3kg前後)1玉</option>
+                            <option value="並(白等級) 大玉(1.4kg前後)1玉" {{ old('type', $item->type ?? '') === '並(白等級) 大玉(1.4kg前後)1玉' ? 'selected' : '' }}>【並(白等級)】大玉(1.4kg前後)1玉</option>
+                            <option value="並(白等級) 特大玉(1.5kg前後)1玉" {{ old('type', $item->type ?? '') === '並(白等級) 特大玉(1.5kg前後)1玉' ? 'selected' : '' }}>【並(白等級)】特大玉(1.5kg前後)1玉</option>   
+                            <option value="並(白等級) 中玉(1.3kg前後)2玉" {{ old('type', $item->type ?? '') === '並(白等級) 中玉(1.3kg前後)2玉' ? 'selected' : '' }}>【並(白等級)】中玉(1.3kg前後)2玉</option>
+                            <option value="並(白等級) 大玉(1.4kg前後)2玉" {{ old('type', $item->type ?? '') === '並(白等級) 大玉(1.4kg前後)2玉' ? 'selected' : '' }}>【並(白等級)】大玉(1.4kg前後)2玉</option>
+                            <option value="並(白等級) 特大玉(1.5kg前後)2玉" {{ old('type', $item->type ?? '') === '並(白等級) 特大玉(1.5kg前後)2玉' ? 'selected' : '' }}>【並(白等級)】特大玉(1.5kg前後)2玉</option>
+                            <option value="【B級品(訳あり)】中玉(1.3kg前後)1玉" {{ old('type', $item->type ?? '') === '【B級品(訳あり)】中玉(1.3kg前後)1玉' ? 'selected' : '' }}>【B級品(訳あり)】中玉(1.3kg前後)1玉</option>
+                            <option value="【B級品(訳あり)】中玉(1.3kg前後)2玉" {{ old('type', $item->type ?? '') === '【B級品(訳あり)】中玉(1.3kg前後)2玉' ? 'selected' : '' }}>【B級品(訳あり)】中玉(1.3kg前後)2玉</option>   
+                            <option value="【B級品(訳あり)】中玉(1.3kg前後)3玉" {{ old('type', $item->type ?? '') === '【B級品(訳あり)】中玉(1.3kg前後)3玉' ? 'selected' : '' }}>【B級品(訳あり)】中玉(1.3kg前後)3玉</option>      
                             </select>
                         </div>
 
@@ -55,16 +55,14 @@
                             <label for="type">在庫数</label>
                             <input type="text" class="form-control" id="stock" name="stock" placeholder="在庫数" value="{{ $item->stock ?? '' }}">
                         </div>
-
                         <div class="mb-3">
                             <label for="detail">詳細</label>
                             <select class="form-control" id="detail" name="detail">
-                                <option>「並」はメロンの分類では「白」と呼ばれ、標準ランクですが、一度ご賞味頂ければその味と香りにはきっと満足して頂きます。
-                                </option>
-                                <option>【B級】網が綺麗にはられていなかったり、トンボが折れてしまったなどの選別で弾かれたものです。味は問題ありません。
-                                </option>
+                                <option value="「並」はメロンの分類では「白」と呼ばれ、標準ランクですが、一度ご賞味頂ければその味と香りにはきっと満足して頂きます。" {{ (old('detail', $item->detail ?? '') === '「並」はメロンの分類では「白」と呼ばれ、標準ランクですが、一度ご賞味頂ければその味と香りにはきっと満足して頂きます。') ? 'selected' : '' }}>「並」はメロンの分類では「白」と呼ばれ、標準ランクですが、一度ご賞味頂ければその味と香りにはきっと満足して頂きます。</option>
+                                <option value="【B級】網が綺麗にはられていなかったり、トンボが折れてしまったなどの選別で弾かれたものです。味は問題ありません。" {{ (old('detail', $item->detail ?? '') === '【B級】網が綺麗にはられていなかったり、トンボが折れてしまったなどの選別で弾かれたものです。味は問題ありません。') ? 'selected' : '' }}>【B級】網が綺麗にはられていなかったり、トンボが折れてしまったなどの選別で弾かれたものです。味は問題ありません。</option>
+                            </select>
                         </div>
-
+                        
                         <div class="mb-3">
                             <label for="image">商品画像</label>
                             <input type="file" class="form-control-file" id="image" name="image" >

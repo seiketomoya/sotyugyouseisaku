@@ -38,7 +38,7 @@ class ItemController extends Controller
     {
         // バリデーションルール
         $request->validate([
-            'name' => 'required|max:100', // 商品名の最大文字数を100文字に設定
+            'name' => 'required|max:100|regex:/^[^\d０-９]+$/u', // 商品名の最大文字数を100文字に設定
             'type' => 'required',
             'price' => 'required|numeric|min:0|max:30000', // 価格が0円以上、30000円以下であることを保証
             'stock' => 'required|numeric',
@@ -91,7 +91,7 @@ class ItemController extends Controller
     {
        // バリデーションルール
        $request->validate([
-        'name' => 'required|max:100', // 商品名の最大文字数を100文字に設定
+        'name' => 'required|max:100|regex:/^[^\d０-９]+$/u', // 商品名の最大文字数を100文字に設定
         'type' => 'required',
         'price' => 'required|numeric|min:0|max:30000', // 価格が0円以上、30000円以下であることを保証
         'stock' => 'required |numeric',

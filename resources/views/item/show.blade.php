@@ -15,7 +15,7 @@
             <div class="col-md-4 mb-3">
             <div class="card h-100" style="width: 100%;">
                     @if($item->image) <!-- カードトップに画像を挿入予定 -->
-                    <img src="{{ Storage::url($item->image) }}" class="card-img-top mx-auto d-block h-50" alt="{{ $item->name }}" style="width: 100%; height: 100%;">
+                    <img src="data:image/png;base64,{{ $item->image }}" class="card-img-top mx-auto d-block h-50" alt="{{ $item->name }}" style="width: 100%; height: 100%;">
                         @else
                         <!-- 商品画像がない場合 -->
                      <img src="{{ asset('images/noimage.jpg') }}" class="card-img-top mx-auto d-block h-50" alt="No Image" style="width: 100%; height: 100%;">

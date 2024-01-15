@@ -67,9 +67,10 @@ class ItemController extends Controller
     
         // 画像の処理を追加する場合
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $image_path = $request->file('image')->store('items','public');
-            $item->image = $image_path;
+            // 画像を取得してBase64でエンコードする
+            $imagePath = $request->file('image');
+            $imageBase64 = base64_encode(file_get_contents($imagePath));
+            $item->image = $imageBase64;
         }
     
         $item->save();

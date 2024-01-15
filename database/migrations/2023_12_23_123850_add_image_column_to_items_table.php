@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->string('image',500)->nullable(); //画像は未挿入でも可
+            $table->text('image')->nullable(); //画像は未挿入でも可
         });
     }
 

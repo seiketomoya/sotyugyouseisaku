@@ -123,12 +123,10 @@ class ItemController extends Controller
     $current_path = $item->image;
 
     if ($request->hasFile('image')) {
-        if($current_path !==''&& !is_null($current_path)){
-            Storage::disk('public')->delete($current_path);
-        }
-        $image_path = $request->file('image')->store('items','public');
-
-        $data["image"] = $image_path;
+        // 画像を取得してBase64でエンコードする
+        $imagePath = $request->file('image');
+        $imageBase64 = base64_encode(file_get_contents($imagePath));
+        $data["image"] = $imageBase64;
     }
     // データベースを更新
     $item->update($data);

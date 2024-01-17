@@ -19,6 +19,7 @@ return new class extends Migration
             $table->smallInteger('price');
             $table->integer('stock')->default(0);
             $table->string('detail',500);
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }

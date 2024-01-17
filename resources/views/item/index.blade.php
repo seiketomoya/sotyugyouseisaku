@@ -1,3 +1,4 @@
+
 @extends('adminlte::page')
 
 @section('title', '商品管理')
@@ -11,10 +12,10 @@
 
 @section('content')
     <!-- 商品のカード表示 -->
-    <div class="row">
+    <div class="row" id="itemList">
         @foreach($items as $item)
-            <div class="col-md-4 mb-3">
-            <div class="card h-100" style="width: 100%;">
+            <div class="col-md-4 mb-3" data-id="{{ $item->id }}">
+                <div class="card h-100" style="width: 100%;">
                     @if($item->image) <!-- カードトップに画像を挿入予定 -->
                     <img src="data:image/png;base64,{{ $item->image }}" class="card-img-top mx-auto d-block h-50" alt="{{ $item->name }}" style="width: 100%; height: 100%;">
                         @else
@@ -22,6 +23,7 @@
                      <img src="{{ asset('images/noimage.jpg') }}" class="card-img-top mx-auto d-block h-50" alt="No Image" style="width: 100%; height: 100%;">
                          
                     @endif 
+
                     <div class="card-body">
                         <h5 class="card-title" style="margin-bottom: 10px;">{{ $item->name }}</h5>
                         <p class="card-text">種別: {{ $item->type }}</p>
@@ -55,8 +57,53 @@
         window.location.href = '/item/delete/' + itemId;
     }
 }
-
 </script>
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.13.0/Sortable.min.js"></script>
+<script>var itemList = document.getElementById('itemList');
+
+document.addEventListener('DOMContentLoaded', function () {
+    var el = document.getElementById('itemList');
+    var sortable = new Sortable(el, {
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        onUpdate: function (/**Event*/evt) {
+            var item = evt.item;
+            sendOrderToServer();
+        }
+    });
+
+    function sendOrderToServer() {
+        var order = {};
+        var items = el.children;
+        for (var i = 0; i < items.length; i++) {
+            order[items[i].getAttribute('data-id')] = i;
+        }
+
+        fetch('/item/reorder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({
+                order: order
+            })
+        })
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (text) {
+            console.log(text);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+});
+
+
+</script>
 @stop

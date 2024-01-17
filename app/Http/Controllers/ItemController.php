@@ -27,7 +27,7 @@ class ItemController extends Controller
     public function index()
     {
         // 商品一覧取得
-        $items = Item::all(); //モデルを使用してデータベースから全アイテムを取得
+        $items = Item::orderBy('order', 'asc')->get();
 
         return view('item.index', ['items' => $items]); //取得したアイテムをビューに渡す
     }
@@ -55,6 +55,7 @@ class ItemController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // 画像のバリデーション
         ]);
         // モデルを使用して商品を新規登録し、データベースに保存
+        $maxOrder = Item::max('order');
         $item = new Item();
         $item->user_id = Auth::id();
         $item->name = $request->input('name');
@@ -63,6 +64,7 @@ class ItemController extends Controller
         $item->stock = $request->input('stock');
         $item->detail = $request->input('detail');
         $item->image = $request->input('image');
+        $item->order = $maxOrder + 1; // 最大orderに1を加える
         
     
         // 画像の処理を追加する場合
@@ -146,6 +148,20 @@ class ItemController extends Controller
         // 削除後に特定のルートやページにリダイレクトします
         return redirect('/item');
     }
+
+    // sortable
+    public function reorder(Request $request)
+{
+    $items = Item::all();
+
+    foreach ($items as $item) {
+        $item->order = $request->order[$item->id];
+        $item->save();
+    }
+
+
+    return response('並び順を変更しました！', 200);
+}
 
     
 

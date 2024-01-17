@@ -33,7 +33,8 @@ Route::get('/item/edit{item}/', [ItemController::class, 'edit'])->name('item.edi
 Route::patch('/item/edit{item}/', [ItemController::class, 'update'])->name('item.update');
  // 商品削除処理のルート
 Route::get('/item/delete/{item}', [ItemController::class, 'delete'])->name('item.delete');
-
+// sortable
+Route::post('/item/reorder', [ItemController::class,'reorder'])->name('item.reorder');
 
 
 

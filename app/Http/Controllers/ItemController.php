@@ -34,7 +34,7 @@ class ItemController extends Controller
 
         public function showItem()
     {
-        $items = Item::all(); // IDに対応する商品を取得
+        $items = Item::orderBy('order', 'asc')->get(); 
 
         return view('item.show', ['items' => $items]); // item.showを表示し、商品データを渡す
     }

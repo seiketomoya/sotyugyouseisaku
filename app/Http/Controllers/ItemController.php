@@ -39,45 +39,42 @@ class ItemController extends Controller
         return view('item.show', ['items' => $items]); // item.showを表示し、商品データを渡す
     }
 
+   // registerメソッド: 商品登録処理を行います。
+   public function register(Request $request)
+   {
+       // バリデーションルール
+       $request->validate([
+           'name' => 'required|max:100|regex:/^[^\d０-９]+$/u', // 商品名の最大文字数を100文字に設定
+           'type' => 'required',
+           'price' => 'required|numeric|min:0|max:30000', // 価格が0円以上、30000円以下であることを保証
+           'stock' => 'required|numeric',
+           'detail' => 'required|max:500', // 詳細の最大文字数を500文字に設定
+           'image'=> 'image|mimes:jpeg,png,jpg,gif|max:40',  // 画像のバリデーション
+       ]);
+       // モデルを使用して商品を新規登録し、データベースに保存
+       $maxOrder = Item::max('order');
+       $item = new Item();
+       $item->user_id = Auth::id();
+       $item->name = $request->input('name');
+       $item->type = $request->input('type');
+       $item->price = $request->input('price');
+       $item->stock = $request->input('stock');
+       $item->detail = $request->input('detail');
+       $item->image = $request->input('image');
+       $item->order = $maxOrder + 1; // 最大orderに1を加える
+       
+   
+       // 画像の処理を追加する場合
+       if ($request->hasFile('image')) {
+           // 画像を取得してBase64でエンコードする
+           $imagePath = $request->file('image');
+           $imageBase64 = base64_encode(file_get_contents($imagePath));
+           $item->image = $imageBase64;
+       }
+   
+       $item->save();
 
-
-
-    // registerメソッド: 商品登録処理を行います。
-    public function register(Request $request)
-    {
-        // バリデーションルール
-        $request->validate([
-            'name' => 'required|max:100|regex:/^[^\d０-９]+$/u', // 商品名の最大文字数を100文字に設定
-            'type' => 'required',
-            'price' => 'required|numeric|min:0|max:30000', // 価格が0円以上、30000円以下であることを保証
-            'stock' => 'required|numeric',
-            'detail' => 'required|max:500', // 詳細の最大文字数を500文字に設定
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // 画像のバリデーション
-        ]);
-        // モデルを使用して商品を新規登録し、データベースに保存
-        $maxOrder = Item::max('order');
-        $item = new Item();
-        $item->user_id = Auth::id();
-        $item->name = $request->input('name');
-        $item->type = $request->input('type');
-        $item->price = $request->input('price');
-        $item->stock = $request->input('stock');
-        $item->detail = $request->input('detail');
-        $item->image = $request->input('image');
-        $item->order = $maxOrder + 1; // 最大orderに1を加える
-        
-    
-        // 画像の処理を追加する場合
-        if ($request->hasFile('image')) {
-            // 画像を取得してBase64でエンコードする
-            $imagePath = $request->file('image');
-            $imageBase64 = base64_encode(file_get_contents($imagePath));
-            $item->image = $imageBase64;
-        }
-    
-        $item->save();
-
-        return redirect('/item');
+       return redirect('/item');
 
     }
 
@@ -108,7 +105,7 @@ class ItemController extends Controller
         'price' => 'required|numeric|min:0|max:30000', // 価格が0円以上、30000円以下であることを保証
         'stock' => 'required |numeric',
         'detail' => 'required|max:500', // 詳細の最大文字数を500文字に設定
-        'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // 画像のバリデーション
+        'image' => 'image|mimes:jpeg,png,jpg,gif|max:40', // 画像のバリデーション
     ]);
 
     $data = [

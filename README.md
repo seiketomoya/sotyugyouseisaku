@@ -1,43 +1,22 @@
-## 商品管理システム
+# メロン農家の商品在庫管理システム
 
-### 環境構築手順
+## 概要
+このシステムでは、メロン農家さんの在庫管理を行うことが出来ます。
 
-* Gitクローン
-* .env.example をコピーして .env を作成
-* MySQLのデータベース作成（名前：item_management）
-* Macの場合 .env の DB_PASSWORD を root に修正（Windowsは修正不要）
+商品の新規登録から編集、削除を行うことができ各商品の在庫を調整することが出来ます。
 
-    ```INI
-    DB_PASSWORD=root
-    ```
+## 主な機能
+-・ログイン・ログアウト機能
+-・ホーム画面
+-・商品管理画面機能
+-・　　　↓
+-・商品新規登録
+-・商品の編集・削除機能
+-・商品カードの並べ替え機能(ドラッグ&ドロップ)
+-・商品一覧画面
 
-* APP_KEY生成
+## 開発環境
+php 8.2
+MYSQL 5.7
+Laravel 10.13
 
-    ```console
-    php artisan key:generate
-    ```
-
-* Composerインストール
-
-    ```console
-    composer install
-    ```
-
-* フロント環境構築
-
-    ```console
-    npm ci
-    npm run build
-    ```
-
-* マイグレーション
-
-    ```console
-    php artisan migrate
-    ```
-
-* 起動
-
-    ```console
-    php artisan serve
-    ```
